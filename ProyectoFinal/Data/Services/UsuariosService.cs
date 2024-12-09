@@ -1,4 +1,5 @@
-﻿using ProyectoFinal.Data.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ProyectoFinal.Data.Models;
 using ProyectoFinal.Data.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,25 +66,47 @@ namespace ProyectoFinal.Data.Services
         }
 
         //Método que nos permite obtener una lista de todos los libros en la BD
-        public List<Usuario> GetlAllUsers() => _context.Usuarios.ToList();
+        public List<ObtenerUsuariosVM> GetlAllUsers()
+        {
+            var usuarios = _context.Usuarios.Select(c => new ObtenerUsuariosVM()
+            {
+                UsuarioID = c.UsuarioID,
+                Nombre = c.Nombre,
+                APaterno = c.APaterno,
+                AMaterno = c.AMaterno,
+                FechaNacimiento = c.FechaNacimiento,
+                Email = c.Email,
+                Celular = c.Celular,
+                Altura = c.Altura,
+                RolID = c.RolID,
+                MembresiaID = c.Det_Membresias.Any() ? c.Det_Membresias.FirstOrDefault().MembresiaID : 0
+            }).ToList();
+
+            return usuarios;
+        }
 
         // Obtener un usuario específico
         public UsuarioEspecificoVM ObtenerUsuarioEspecifico(int usuarioID)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.UsuarioID == usuarioID);
+            var usuario = _context.Usuarios
+                          .Include(u => u.Det_Membresias)  // Eager Loading para incluir la relación Det_Membresias
+                          .FirstOrDefault(u => u.UsuarioID == usuarioID);
 
             if (usuario != null)
             {
                 return new UsuarioEspecificoVM
                 {
                     UsuarioID = usuario.UsuarioID,
-                    Nombre = usuario.Nombre,
-                    APaterno = usuario.APaterno,
-                    AMaterno = usuario.AMaterno,
+                    Nombre = usuario.Nombre ?? "No disponible",
+                    APaterno = usuario.APaterno ?? "No disponible",
+                    AMaterno = usuario.AMaterno ?? "No disponible",
                     FechaNacimiento = usuario.FechaNacimiento,
-                    Email = usuario.Email,
-                    Celular = usuario.Celular,
-                    Altura = usuario.Altura
+                    Email = usuario.Email ?? "No disponible",
+                    Celular = usuario.Celular ?? "No disponible",
+                    Altura = usuario.Altura,
+                    RolID = usuario.RolID,
+                    // Si Det_Membresias no está vacío, obtiene el primer MembresiaID asociado
+                    MembresiaID = usuario.Det_Membresias.Any() ? usuario.Det_Membresias.FirstOrDefault().MembresiaID : 0
                 };
             }
 

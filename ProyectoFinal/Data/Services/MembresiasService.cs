@@ -67,30 +67,18 @@ namespace ProyectoFinal.Data.Services
         }
 
         // Método para buscar membresías con filtros opcionales
-        public List<MembresiaVM> BuscarMembresias(BuscarMembresiaVM buscarMembresiaVM)
+        public List<ObtenerMembresiasVM> ObtenerMembresias()
         {
-            var query = _context.Membresias.AsQueryable();
-
-            if (!string.IsNullOrEmpty(buscarMembresiaVM.NombreMembresia))
+            var membresia = _context.Membresias.Select(c => new ObtenerMembresiasVM()
             {
-                query = query.Where(m => m.NombreMembresia.Contains(buscarMembresiaVM.NombreMembresia));
-            }
-            if (buscarMembresiaVM.Precio.HasValue)
-            {
-                query = query.Where(m => m.Precio <= buscarMembresiaVM.Precio.Value);
-            }
-            if (buscarMembresiaVM.DiasValidacion.HasValue)
-            {
-                query = query.Where(m => m.TotalDiasValidacion >= buscarMembresiaVM.DiasValidacion.Value);
-            }
-
-            return query.Select(m => new MembresiaVM
-            {
-                NombreMembresia = m.NombreMembresia,
-                DescripcionMembresia = m.DescripcionMembresia,
-                Precio = m.Precio,
-                TotalDiasValidacion = m.TotalDiasValidacion
+                MembresiaID = c.MembresiaID,
+                NombreMembresia = c.NombreMembresia,
+                DescripcionMembresia = c.DescripcionMembresia,
+                Precio = c.Precio,
+                TotalDiasValidacion = c.TotalDiasValidacion
             }).ToList();
+
+            return membresia;
         }
 
         // Método para obtener una membresía específica por ID
@@ -102,6 +90,7 @@ namespace ProyectoFinal.Data.Services
             {
                 return new MembresiaVM
                 {
+                    MembresiaID = membresia.MembresiaID,
                     NombreMembresia = membresia.NombreMembresia,
                     DescripcionMembresia = membresia.DescripcionMembresia,
                     Precio = membresia.Precio,

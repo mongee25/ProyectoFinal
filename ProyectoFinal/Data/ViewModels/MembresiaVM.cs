@@ -2,6 +2,7 @@
 {
     public class MembresiaVM
     {
+        public int MembresiaID { get; set; }
         public string NombreMembresia { get; set; } // Nombre de la membresía
         public string DescripcionMembresia { get; set; } // Descripción de la membresía
         public decimal Precio { get; set; } // Precio de la membresía
@@ -24,11 +25,13 @@
         public int MembresiaID { get; set; } // Identificador único de la membresía
     }
 
-    // ViewModel para buscar membresías con filtros
-    public class BuscarMembresiaVM
+
+    public class ObtenerMembresiasVM
     {
-        public string NombreMembresia { get; set; } // Nombre para buscar (opcional)
-        public decimal? Precio { get; set; } // Rango mínimo de precio (opcional)
-        public int? DiasValidacion { get; set; } // Rango mínimo de días de validación (opcional)
+        public int MembresiaID { get; set; }
+        public string NombreMembresia { get; set; }
+        public string DescripcionMembresia { get; set; }
+        public decimal? Precio { get; set; }
+        public int? TotalDiasValidacion { get; set; } 
     }
 }

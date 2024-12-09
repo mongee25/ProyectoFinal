@@ -15,7 +15,7 @@ namespace ProyectoFinal.Data.Services
         }
 
         // Método para agregar una nueva clase
-        public void AgregarClase(ClaseVM clase)
+        public void AgregarClase(AgregarClaseVM clase)
         {
             var _clase = new Clase()
             {
@@ -33,6 +33,7 @@ namespace ProyectoFinal.Data.Services
         {
             var _clases = _context.Clases.Select(c => new ClaseVM()
             {
+                ClaseID = c.ClaseID,
                 NombreClase = c.NombreClase,
                 HoraInicio = c.HoraInicio,
                 HoraFin = c.HoraFin,

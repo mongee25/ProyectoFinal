@@ -32,7 +32,7 @@ namespace ProyectoFinal.Data.Services
         }
 
         // Método para modificar un detalle de membresía
-        public void ModificarDetalleMembresia(ModificarDetalleMembresiaVM modificarDetalleVM)
+        public void ActualizarDetalleMembresia(int idM, int idU, ModificarDetalleMembresiaVM modificarDetalleVM)
         {
             var detalle = _context.Det_Membresias.FirstOrDefault(d =>
                 d.UsuarioID == modificarDetalleVM.UsuarioID &&

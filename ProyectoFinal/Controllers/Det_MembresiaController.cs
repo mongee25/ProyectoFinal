@@ -13,15 +13,15 @@ namespace ProyectoFinal.Controllers
     [ApiController]
     public class Det_MembresiasController : ControllerBase
     {
-        private Det_MembresiasController _detalleMembresiaService;
+        private Det_Membresias_Service _detalleMembresiaService;
 
         public Det_MembresiasController(Det_Membresias_Service detalleMembresiaService)
         {
-            //_detalleMembresiaService = detalleMembresiaService;
+            _detalleMembresiaService = detalleMembresiaService;
         }
 
         // Endpoint para agregar un detalle de membresía
-        [HttpPost("Agregar")]
+        [HttpPost("aregar-det_membresia")]
         public IActionResult AgregarDetalleMembresia([FromBody] AgregarDetalleMembresiaVM detalleMembresiaVM)
         {
             try
@@ -36,12 +36,12 @@ namespace ProyectoFinal.Controllers
         }
 
         // Endpoint para modificar un detalle de membresía
-        [HttpPut("Modificar")]
-        public IActionResult ModificarDetalleMembresia([FromBody] ModificarDetalleMembresiaVM modificarDetalleVM)
+        [HttpPut("actualizar-det_membresia-by-id/{id}")]
+        public IActionResult ActualizarDetalleMembresia(int idM, int idU, [FromBody] ModificarDetalleMembresiaVM modificarDetalleVM)
         {
             try
             {
-                _detalleMembresiaService.ModificarDetalleMembresia(modificarDetalleVM);
+                _detalleMembresiaService.ActualizarDetalleMembresia(idM, idU, modificarDetalleVM);
                 return Ok(new { mensaje = "Detalle de membresía modificado correctamente." });
             }
             catch (Exception ex)

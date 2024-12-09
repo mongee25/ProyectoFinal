@@ -61,13 +61,12 @@ namespace ProyectoFinal.Controllers
             }
         }
 
-        // Buscar membresías con filtros opcionales
-        [HttpPost("BuscarMembresias")]
-        public IActionResult BuscarMembresias([FromBody] BuscarMembresiaVM buscarMembresiaVM)
+        [HttpGet("obtener-membresias")]
+        public IActionResult ObtenerMembresias()
         {
             try
             {
-                var membresias = _membresiaService.BuscarMembresias(buscarMembresiaVM);
+                var membresias = _membresiaService.ObtenerMembresias();
                 return Ok(membresias);
             }
             catch (Exception ex)

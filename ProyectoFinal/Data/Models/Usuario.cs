@@ -16,11 +16,9 @@ namespace ProyectoFinal.Data.Models
         public string Celular { get; set; }
         public decimal Altura { get; set; }
         public int RolID { get; set; }
-        public int? MembresiaID { get; set; }
 
         //MAPEO
         public Rol Rol { get; set; } // Navegación
-        public Membresia Membresia { get; set; } // Navegación
 
         // Relación con Det_Usuarios_Clases
         public ICollection<Det_Usuario_Clase> Det_Usuarios_Clases { get; set; }

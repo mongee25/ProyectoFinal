@@ -75,20 +75,8 @@ namespace ProyectoFinal.Migrations
                     b.Property<int>("ClaseID")
                         .HasColumnType("int");
 
-                    b.Property<string>("AMaterno")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("APaterno")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("FechaInscripcion")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NombreClase")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UsuarioID", "ClaseID");
 
@@ -164,9 +152,6 @@ namespace ProyectoFinal.Migrations
                     b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("MembresiaID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
@@ -174,8 +159,6 @@ namespace ProyectoFinal.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("UsuarioID");
-
-                    b.HasIndex("MembresiaID");
 
                     b.HasIndex("RolID");
 
@@ -222,17 +205,11 @@ namespace ProyectoFinal.Migrations
 
             modelBuilder.Entity("ProyectoFinal.Data.Models.Usuario", b =>
                 {
-                    b.HasOne("ProyectoFinal.Data.Models.Membresia", "Membresia")
-                        .WithMany()
-                        .HasForeignKey("MembresiaID");
-
                     b.HasOne("ProyectoFinal.Data.Models.Rol", "Rol")
                         .WithMany("Usuarios")
                         .HasForeignKey("RolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Membresia");
 
                     b.Navigation("Rol");
                 });

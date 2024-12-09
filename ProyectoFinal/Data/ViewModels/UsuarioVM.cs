@@ -45,20 +45,25 @@ namespace ProyectoFinal.Data.ViewModels
         public string Nombre { get; set; }
         public string APaterno { get; set; }
         public string AMaterno { get; set; }
+        public DateTime FechaNacimiento { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
         public decimal? Altura { get; set; }
+        public int RolID { get; set; }
+        public int MembresiaID { get; set; }
     }
 
     public class UsuarioEspecificoVM
     {
         public int UsuarioID { get; set; }
         public string Nombre { get; set; }
-        public string AMaterno { get; set; }
         public string APaterno { get; set; }
+        public string AMaterno { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
-        public decimal Altura { get; set; }
+        public decimal? Altura { get; set; }
+        public int RolID { get; set; }
+        public int MembresiaID { get; set; }
     }
 }
