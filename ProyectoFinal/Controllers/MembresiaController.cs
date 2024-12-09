@@ -17,7 +17,7 @@ namespace ProyectoFinal.Controllers
         }
 
         // Agregar una nueva membresía
-        [HttpPost("AgregarMembresia")]
+        [HttpPost("agregar-membresia")]
         public IActionResult AgregarMembresia([FromBody] MembresiaVM membresiaVM)
         {
             try
@@ -32,7 +32,7 @@ namespace ProyectoFinal.Controllers
         }
 
         // Modificar una membresía existente
-        [HttpPut("ModificarMembresia")]
+        [HttpPut("actualizar-membresia-by-id/{id}")]
         public IActionResult ModificarMembresia([FromBody] ModificarMembresiaVM modificarMembresiaVM)
         {
             try

@@ -30,6 +30,7 @@ namespace ProyectoFinal.Data.Services
         {
             var _roles = _context.Roles.Select(r => new RolVM()
             {
+                RolID = r.RolID,
                 Nombre = r.Nombre
             }).ToList();
 
@@ -41,6 +42,7 @@ namespace ProyectoFinal.Data.Services
         {
             var _rol = _context.Roles.Where(r => r.RolID == rolId).Select(r => new RolVM()
             {
+                RolID = r.RolID,
                 Nombre = r.Nombre
             }).FirstOrDefault();
 

@@ -3,6 +3,7 @@ using static ProyectoFinal.Data.ViewModels.Det_MembresiaVM;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using ProyectoFinal.Data.ViewModels;
 
 namespace ProyectoFinal.Data.Services
 {
@@ -53,33 +54,18 @@ namespace ProyectoFinal.Data.Services
         }
 
         // Método para buscar detalles de membresías con filtros opcionales
-        public List<DetalleMembresiaGeneralVM> BuscarDetallesMembresias(BuscarDetalleMembresiaVM buscarDetalleVM)
+        public List<DetalleMembresiaGeneralVM> BuscarDetallesMembresias()
         {
-            var query = _context.Det_Membresias.AsQueryable();
-
-            if (buscarDetalleVM.UsuarioID.HasValue)
+            var detmembresia = _context.Det_Membresias.Select(c => new DetalleMembresiaGeneralVM()
             {
-                query = query.Where(d => d.UsuarioID == buscarDetalleVM.UsuarioID);
-            }
-            if (buscarDetalleVM.MembresiaID.HasValue)
-            {
-                query = query.Where(d => d.MembresiaID == buscarDetalleVM.MembresiaID);
-            }
-            if (buscarDetalleVM.Estado.HasValue)
-            {
-                query = query.Where(d => d.Estado == buscarDetalleVM.Estado);
-            }
-
-            return query.Select(d => new DetalleMembresiaGeneralVM
-            {
-                UsuarioID = d.UsuarioID,
-                NombreUsuario = d.Usuario.Nombre,
-                MembresiaID = d.MembresiaID,
-                NombreMembresia = d.Membresia.NombreMembresia,
-                FechaCreacion = d.FechaCreacion,
-                FechaExpiracion = d.FechaExpiracion,
-                Estado = d.Estado
+                MembresiaID = c.MembresiaID,
+                UsuarioID = c.UsuarioID,
+                FechaCreacion = c.FechaCreacion,
+                FechaExpiracion = c.FechaExpiracion,
+                Estado = c.Estado
             }).ToList();
+
+            return detmembresia;
         }
 
         // Método para obtener detalles específicos de una membresía de un usuario

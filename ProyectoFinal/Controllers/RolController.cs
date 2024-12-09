@@ -30,7 +30,7 @@ namespace ProyectoFinal.Controllers
         }
 
         // Obtener todos los roles
-        [HttpGet("ObtenerTodos")]
+        [HttpGet("obtener-roles")]
         public IActionResult ObtenerTodosLosRoles()
         {
             try

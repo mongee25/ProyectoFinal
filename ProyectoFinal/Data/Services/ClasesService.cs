@@ -48,6 +48,7 @@ namespace ProyectoFinal.Data.Services
         {
             var _clase = _context.Clases.Where(c => c.ClaseID == claseId).Select(c => new ClaseVM()
             {
+                ClaseID = c.ClaseID,
                 NombreClase = c.NombreClase,
                 HoraInicio = c.HoraInicio,
                 HoraFin = c.HoraFin,

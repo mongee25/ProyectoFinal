@@ -7,11 +7,11 @@ namespace ProyectoFinal.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DetUsuarioClaseController : ControllerBase
+    public class Det_Usuario_ClaseController : ControllerBase
     {
         private Det_Usuarios_ClasesService _service;
 
-        public DetUsuarioClaseController(Det_Usuarios_ClasesService service)
+        public Det_Usuario_ClaseController(Det_Usuarios_ClasesService service)
         {
             _service = service;
         }
@@ -32,19 +32,19 @@ namespace ProyectoFinal.Controllers
         }
 
         // Modificar un detalle existente
-        [HttpPut("ModificarDetalle")]
-        public IActionResult ModificarDetalleUsuarioClase(int usuarioID, int claseID, [FromBody] DateTime? nuevaFechaInscripcion)
-        {
-            try
-            {
-                _service.ModificarDetalleUsuarioClase(usuarioID, claseID, nuevaFechaInscripcion);
-                return Ok(new { mensaje = "Detalle modificado exitosamente" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { mensaje = "Error al modificar el detalle", error = ex.Message });
-            }
-        }
+        //[HttpPut("modificar-detalle_usuario_clase-by-ids")]
+        //public IActionResult ModificarDetalleUsuarioClase(int usuarioID, int claseID, [FromBody] ModificarDet_Usuario_ClaseVM modificarDet_Usuario_ClaseVM)
+        //{
+        //    try
+        //    {
+        //        _service.ActualizarDetalleUsuarioClase(usuarioID, claseID, modificarDet_Usuario_ClaseVM);
+        //        return Ok(new { mensaje = "Detalle modificado exitosamente" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { mensaje = "Error al modificar el detalle", error = ex.Message });
+        //    }
+        //}
 
         // Eliminar un detalle usuario-clase
         [HttpDelete("EliminarDetalle")]

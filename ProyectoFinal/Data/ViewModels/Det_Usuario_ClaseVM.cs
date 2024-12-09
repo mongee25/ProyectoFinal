@@ -8,4 +8,8 @@ namespace ProyectoFinal.Data.ViewModels
         public int ClaseID { get; set; }   // ID de la Clase
         public DateTime FechaInscripcion { get; set; } // Fecha de inscripción
     }
+    public class ModificarDet_Usuario_ClaseVM
+    {
+        public DateTime FechaInscripcion { get; set; } // Fecha de inscripción
+    }
 }

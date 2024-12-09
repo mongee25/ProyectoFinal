@@ -36,12 +36,12 @@ namespace ProyectoFinal.Controllers
         }
 
         // Endpoint para modificar un detalle de membresía
-        [HttpPut("actualizar-det_membresia-by-id/{id}")]
-        public IActionResult ActualizarDetalleMembresia(int idM, int idU, [FromBody] ModificarDetalleMembresiaVM modificarDetalleVM)
+        [HttpPut("actualizar-det_membresia-by-ids")]
+        public IActionResult ActualizarDetalleMembresia(int idU, int idM, [FromBody] ModificarDetalleMembresiaVM modificarDetalleVM)
         {
             try
             {
-                _detalleMembresiaService.ActualizarDetalleMembresia(idM, idU, modificarDetalleVM);
+                _detalleMembresiaService.ActualizarDetalleMembresia(idU, idM, modificarDetalleVM);
                 return Ok(new { mensaje = "Detalle de membresía modificado correctamente." });
             }
             catch (Exception ex)
@@ -51,14 +51,22 @@ namespace ProyectoFinal.Controllers
         }
 
         // Endpoint para buscar detalles de membresías
-        //[HttpGet("Buscar")]
-        //public IActionResult BuscarDetalles([FromQuery] BuscarDetalleMembresiaVM buscarDetalleVM)
+        //[HttpGet("obtener-membresias")]
+        //public IActionResult BuscarDetallesMembresias()
         //{
-            
+        //    try
+        //    {
+        //        var detmembresias = _detalleMembresiaService.BuscarDetallesMembresias();
+        //        return Ok(detmembresias);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { mensaje = "Error al buscar los detalles membresías.", error = ex.Message });
+        //    }
         //}
 
         // Endpoint para obtener detalles específicos de una membresía de un usuario
-        [HttpGet("DetalleEspecifico")]
+        [HttpGet("obtener-detalle-by-ids")]
         public IActionResult ObtenerDetalleEspecifico([FromQuery] int usuarioID, [FromQuery] int membresiaID)
         {
             try

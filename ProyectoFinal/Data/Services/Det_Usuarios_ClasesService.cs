@@ -30,15 +30,15 @@ namespace ProyectoFinal.Data.Services
         }
 
         // Modificar un detalle existente
-        public void ModificarDetalleUsuarioClase(int usuarioID, int claseID, DateTime? nuevaFechaInscripcion)
+        public void ActualizarDetalleUsuarioClase(int usuarioID, int claseID, ModificarDet_Usuario_ClaseVM detalleVM)
         {
-            var detalle = _context.Det_Usuarios_Clases.FirstOrDefault(d => d.UsuarioID == usuarioID && d.ClaseID == claseID);
+            var detalle = _context.Det_Usuarios_Clases.FirstOrDefault(d => 
+            d.UsuarioID == usuarioID && 
+            d.ClaseID == claseID);
 
             if (detalle != null)
             {
-                if (nuevaFechaInscripcion.HasValue)
-                    detalle.FechaInscripcion = nuevaFechaInscripcion.Value;
-
+                detalle.FechaInscripcion = detalleVM.FechaInscripcion;
                 _context.SaveChanges();
             }
         }
